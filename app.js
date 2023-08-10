@@ -38,11 +38,15 @@ app.get('/sms', async (req, res) => {
 
     let options = {
         body,
-        from: config.TWILIO_PHONE_NUMBER,
+        from: '',
         to
     }
-
-    let result = await sendSMS(options);
+    try {
+        let result = await sendSMS(options); 
+    } catch (error) {
+        console.log(error)
+    }
+    
     res.send(result)
 
 })
